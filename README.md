@@ -2,6 +2,20 @@
 
 1. Create a react app.
 2. Create a file named `Dockerfile.dev` in the root directory.
+
+    ```Dockerfile
+    FROM node:alpine
+
+    WORKDIR /app
+
+    COPY package.json .
+    RUN npm install
+
+    COPY . .
+
+    CMD ["npm", "start"]
+    ```
+
 3. Remove the `node_modules` folder from the project directory. (node_modules folder has a lot of libraries included which gets copied to the docker container. So we don't need it in out local machine. It will also build the container faster.)
 4. Create a `docker-compose.yml` file in the root directory.
     ```yml
